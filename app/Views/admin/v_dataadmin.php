@@ -4,24 +4,17 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Tambah Dosen</h5>
+                <h5 class="modal-title" id="addModalLabel">Tambah Admin</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>NIDN/NIDK</label> <span id="error_nidn" class="text-danger ms-3"></span>
-                    <input type="text" class="form-control nidn" placeholder="Masukan NIDN/NIDK">
+                    <label>Username</label> <span id="error_username" class="text-danger ms-3"></span>
+                    <input type="text" class="form-control username" placeholder="Masukan Username">
                     <small class="text-muted">
-                        NIDN/NIDK harus berbentuk angka
-                    </small>
-                </div>
-                <div class="form-group">
-                    <label>Nama</label> <span id="error_nama" class="text-danger ms-3"></span>
-                    <input type="text" class="form-control nama" placeholder="Masukan Nama">
-                    <small class="text-muted">
-                        Nama lengkap sesuai data diri Dosen
+                        Username minimal terdiri dari 3 huruf ataupun angka
                     </small>
                 </div>
             </div>
@@ -38,7 +31,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit Dosen</h5>
+          <h5 class="modal-title" id="editModalLabel">Edit Admin</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -46,19 +39,12 @@
         <div class="modal-body">
             <input type="hidden" class="e_id">
             <div class="form-group">
-                <label>NIDN/NIDK</label> <span id="error_nidn" class="text-danger ms-3"></span>
-                <input type="text" class="form-control e_nidn" placeholder="Masukan NIDN/NIDK">
-                <small class="text-muted">
-                  NIDN/NIDK harus berbentuk angka
-                </small>
-            </div>
-            <div class="form-group">
-                <label>Nama</label> <span id="error_nama" class="text-danger ms-3"></span>
-                <input type="text" class="form-control e_nama" placeholder="Masukan Nama">
-                <small class="text-muted">
-                  Nama lengkap sesuai data diri Dosen
-                </small>
-            </div>
+                    <label>Username</label> <span id="error_username" class="text-danger ms-3"></span>
+                    <input type="text" class="form-control e_username" placeholder="Masukan Username">
+                    <small class="text-muted">
+                        Username minimal terdiri dari 3 huruf ataupun angka
+                    </small>
+                </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -75,12 +61,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Dosen</h1>
+            <h1>Data Admin</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url()?>">Dasboard</a></li>
-              <li class="breadcrumb-item active">Data Dosen</li>
+              <li class="breadcrumb-item active">Data Admin</li>
             </ol>
           </div>
         </div>
@@ -117,13 +103,12 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr class=>
-                      <th class="col-3">NIDN/NIDK</th>
-                      <th class="col-4">Nama</th>
+                      <th class="col-3">Username</th>
                       <th class="col-2">Status</th>
                       <th class="col-2">Aksi</th>
                     </tr>
                   </thead>
-                  <tbody class="datadosen"></tbody>
+                  <tbody class="dataAdmin"></tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -156,70 +141,64 @@ $(document).ready(function (){
   loaddata();
 
   $(document).on('click', '.refresh', function(){
-      $('.datadosen').html("");
+      $('.dataAdmin').html("");
       loaddata();
   })
 
   $('.cari').keyup(function () {
     var key = $('.cari').val();
+    //console.log(key);
         caridata(key);
    });
 
    $(document).on('click','.edit_btn', function(){
 
-    var anggota_id = $(this).closest('td').find('.id_data').val();
-    //alert(anggota_id);
+    var admin_id = $(this).closest('td').find('.id_data').val();
+    console.log(admin_id);
 
     $.ajax({
         method:"POST",
-        url:"/dosen/view",
+        url:"/admin/view",
         data: {
-          'id' : anggota_id,
+          'id' : admin_id,
         },
         success:function (response){
-          //console.log(response.anggota);
-          $.each(response.anggota, function(key, val){
+          //console.log(response.admin);
+          $.each(response.admin, function(key, val){
+
             $('#editModal').modal('show');
             $('.e_id').val(val['id']);
-            $('.e_nidn').val(val['username']);
-            $('.e_nama').val(val['nama']);
+            $('.e_username').val(val['username']);
           });
         }
       });
     });
 
    $(document).on('click','.ajaxedit-save', function(){
-    if($.trim($('.e_nidn').val()).length == 0){
-        error_nidn = 'NIDN/NIDK masih Kosong';
-        $('#e_error_ndin').text(error_nidn);
-      }else if($.trim($('.e_nidn').val()).length < 10){
-        error_nidn = 'Panjang NIDN/NIDK minimal 10';
-        $('#e_error_nidn').text(error_nidn);
+    if($.trim($('.e_username').val()).length == 0){
+        error_username = 'Username masih Kosong';
+        $('#e_error_ndin').text(error_username);
+      }else if($.trim($('.e_username').val()).length < 3){
+        error_username = 'Panjang Username minimal 3';
+        $('#e_error_username').text(error_username);
       }else{
-        error_nidn = '';
-        $('#e_error_nidn').text(error_nidn);
+        error_username = '';
+        $('#e_error_username').text(error_username);
       }
 
-      if($.trim($('.e_nama').val()).length == 0){
-        error_nama = 'Nama masih Kosong';
-        $('#e_error_nama').text(error_nama);
-      }else{
-        error_nama = '';
-        $('#e_error_nama').text(error_nama);
-      }
-
-      if(error_nidn !='' || error_nama != ''){
+      if(error_username !=''){
         return false;
       }else{
         var data ={
           'id':$('.e_id').val(),
-          'nama': $('.e_nama').val(),
-          'username' : $('.e_nidn').val(),
+          'username' : $('.e_username').val(),
         };
+
+        //console.log(data);
 
         $.ajax({
           method:"POST",
-          url:"/dosen/edit",
+          url:"/admin/edit",
           data:data,
           success:function (response){
             Swal.fire({
@@ -229,7 +208,7 @@ $(document).ready(function (){
             })
             $('#editModal').modal('hide');
 
-            $('.datadosen').html("");
+            $('.dataAdmin').html("");
             loaddata();
         }
         });
@@ -238,8 +217,8 @@ $(document).ready(function (){
 
   $(document).on('click','.delete_btn', function(){
 
-  var anggota_id = $(this).closest('td').find('.id_data').val();
-
+  var admin_id = $(this).closest('td').find('.id_data').val();
+    console.log(admin_id);
   Swal.fire({
     title: 'Apa anda yakin ingin menhapus ini?',
     showDenyButton: true,
@@ -249,13 +228,13 @@ $(document).ready(function (){
     if (result.isConfirmed) {
       $.ajax({
         method:"POST",
-        url:"/dosen/delete",
+        url:"/admin/delete",
         data: {
-          'id' : anggota_id,
+          'id' : admin_id,
         },
         success:function (response){
           Swal.fire('Data berhasil dihapus!!', '', 'success')
-          $('.datadosen').html("");
+          $('.dataAdmin').html("");
           loaddata();
         }
       });
@@ -270,29 +249,28 @@ function caridata(key){
 
     $.ajax({
         method:"POST",
-        url:"/dosen/search",
+        url:"/admin/search",
         data: {
             'key' : key,
         },
         success:function (response){
-            //console.log(response.anggota);
-            $('.datadosen').html("");
+            //console.log(response.admin);
+            $('.dataAdmin').html("");
 
-            $.each(response.anggota, function(key,value){
-                //console.log(value['id_Anggota']);
+            $.each(response.admin, function(key,value){
+                //console.log(value['id_admin']);
                 var status = '';
                 if(value['status'] == 1){
                 status = '<span class="badge bg-danger"><i class="fab fa-creative-commons-by"></i> Belum Aktif</span>';
                 }else{
                 status = '<span class="badge bg-success"><i class="fab fa-creative-commons-by"></i> Aktif</span>';
                 }
-                $('.datadosen').append(
+                $('.dataAdmin').append(
                 '<tr>\
                     <td class="col-3">'+value['username']+'</td>\
-                    <td class="col-4">'+value['nama']+'</td>\
                     <td class="col-2">'+status+'</td>\
                     <td class="col-2">\
-                    <input type="hidden" class="id_data" value="'+value['id']+'">\
+                    <input type="hidden" class="id_data" value="'+value['id_admin']+'">\
                     <a href="#" class="badge btn-primary edit_btn"> Edit</a>\
                     <a href="#" class="badge btn-danger delete_btn"> Delete</a>\
                     </td>\
@@ -306,21 +284,20 @@ function caridata(key){
 function loaddata(){
   $.ajax({
     method: "GET",
-    url: "/dosen/get",
+    url: "/admin/get",
     success:function(response){
-      //console.log(response.anggota);
-      $.each(response.anggota, function(key,value){
-        //console.log(value['id_Anggota']);
+      //console.log(response.admin);
+      $.each(response.admin, function(key,value){
+        //console.log(value['id']);
         var status = '';
         if(value['status'] == 1){
           status = '<a class="badge bg-danger"><i class="fab fa-creative-commons-by"></i> Belum Aktif</a>';
         }else{
           status = '<a class="badge bg-success"><i class="fab fa-creative-commons-by"></i> Aktif</a>';
         }
-        $('.datadosen').append(
+        $('.dataAdmin').append(
           '<tr>\
             <td class="col-3">'+value['username']+'</td>\
-            <td class="col-4">'+value['nama']+'</td>\
             <td class="col-2">'+status+'</td>\
             <td class="col-2">\
               <input type="hidden" class="id_data" value="'+value['id']+'">\
@@ -341,50 +318,32 @@ function loaddata(){
 <script>
   $(document).ready(function () {
 
-    $(".nidn").keypress(function (e) {
-        //if the letter is not digit then display error and don't type anything
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-            //display error message
-            return false;
-        }
-   });
-
     $(document).on('click','.ajaxadd-save', function () {
-      if($.trim($('.nidn').val()).length == 0){
-        error_nidn = 'NIDN/NIDK masih Kosong';
-        $('#error_nidn').text(error_nidn);
-      }else if($.trim($('.nidn').val()).length < 10){
-        error_nidn = 'Panjang NIDN/NIDK minimal 10';
-        $('#error_nidn').text(error_nidn);
+      if($.trim($('.username').val()).length == 0){
+        error_username = 'Username masih Kosong';
+        $('#error_username').text(error_username);
+      }else if($.trim($('.username').val()).length < 3){
+        error_username = 'Panjang Username minimal 3';
+        $('#error_username').text(error_username);
       }else{
-        error_nidn = '';
-        $('#error_nidn').text(error_nidn);
+        error_username = '';
+        $('#error_username').text(error_username);
       }
 
-      if($.trim($('.nama').val()).length == 0){
-        error_nama = 'Nama masih Kosong';
-        $('#error_nama').text(error_nama);
-      }else{
-        error_nama = '';
-        $('#error_nama').text(error_nama);
-      }
-
-      if(error_nidn !='' || error_nama != ''){
+      if(error_username !=''){
         return false;
       }else{
         var data ={
-          'nama': $('.nama').val(),
-          'username' : $('.nidn').val(),
-          'type_anggota' : '1'
+          'username' : $('.username').val(),
         };
        $.ajax({
          method: "POST",
-         url: "/dosen/add",
+         url: "/admin/add",
          data: data,
          success:function(response){
           $('#addModal').modal('hide');
           $('#addModal').find('input').val('');
-          $('.datadosen').html("");
+          $('.dataAdmin').html("");
           loaddata();
 
           Swal.fire({

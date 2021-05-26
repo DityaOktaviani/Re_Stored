@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AnggotaModel;
 
-class DataAnggota extends BaseController
+class Anggota extends BaseController
 {
 	public function mhs()
 	{

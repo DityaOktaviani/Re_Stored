@@ -193,7 +193,7 @@ $(document).ready(function (){
         error_nip = 'NIP masih Kosong';
         $('#e_error_ndin').text(error_nip);
       }else if($.trim($('.e_nip').val()).length < 18){
-        error_nip = 'Panjang NIM minimal 10';
+        error_nip = 'Panjang NIP minimal 18';
         $('#e_error_nip').text(error_nip);
       }else{
         error_nip = '';
