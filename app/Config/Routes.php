@@ -43,49 +43,59 @@ $routes->post('home/delete_mhs', 'Home::delete_mhs');
 //untuk data semua ada di bawah ini
 
 //mahasiswa
-$routes->get('mhs/', 'Anggota::mhs');
-$routes->post('mhs/add', 'Anggota::add');
-$routes->get('mhs/get', 'Anggota::get_mhs');
-$routes->post('mhs/view', 'Anggota::view');
-$routes->post('mhs/edit', 'Anggota::edit');
-$routes->post('mhs/delete', 'Anggota::delete');
-$routes->post('mhs/search', 'Anggota::find_mhs');
+$routes->group('mhs', function($routes){
+	$routes->get('', 'Anggota::mhs');
+	$routes->post('add', 'Anggota::add');
+	$routes->get('get', 'Anggota::get_mhs');
+	$routes->post('view', 'Anggota::view');
+	$routes->post('edit', 'Anggota::edit');
+	$routes->post('delete', 'Anggota::delete');
+	$routes->post('search', 'Anggota::find_mhs');
+});
 
 //dosen
-$routes->get('dosen/', 'Anggota::dosen');
-$routes->post('dosen/add', 'Anggota::add');
-$routes->post('dosen/view', 'Anggota::view');
-$routes->post('dosen/edit', 'Anggota::edit');
-$routes->post('dosen/delete', 'Anggota::delete');
-$routes->get('dosen/get', 'Anggota::get_dosen');
-$routes->post('dosen/search', 'Anggota::find_dosen');
+$routes->group('dosen', function($routes){
+	$routes->get('', 'Anggota::dosen');
+	$routes->post('add', 'Anggota::add');
+	$routes->post('view', 'Anggota::view');
+	$routes->post('edit', 'Anggota::edit');
+	$routes->post('delete', 'Anggota::delete');
+	$routes->get('get', 'Anggota::get_dosen');
+	$routes->post('search', 'Anggota::find_dosen');
+});
 
 //TU
-$routes->get('tu/', 'Anggota::tu');
-$routes->post('tu/add', 'Anggota::add');
-$routes->post('tu/view', 'Anggota::view');
-$routes->post('tu/edit', 'Anggota::edit');
-$routes->post('tu/delete', 'Anggota::delete');
-$routes->get('tu/get', 'Anggota::get_tu');
-$routes->post('tu/search', 'Anggota::find_tu');
+$routes->group('tu', function($routes){
+	$routes->get('', 'Anggota::tu');
+	$routes->post('add', 'Anggota::add');
+	$routes->post('view', 'Anggota::view');
+	$routes->post('edit', 'Anggota::edit');
+	$routes->post('delete', 'Anggota::delete');
+	$routes->get('get', 'Anggota::get_tu');
+	$routes->post('search', 'Anggota::find_tu');
+});
 
 //admin
-$routes->get('admin/', 'Admin::admin');
-$routes->post('admin/add', 'Admin::add');
-$routes->post('admin/view', 'Admin::view');
-$routes->post('admin/edit', 'Admin::edit');
-$routes->post('admin/delete', 'Admin::delete');
-$routes->get('admin/get', 'Admin::get');
-$routes->add('admin/search', 'Admin::find');
+$routes->group('admin', function($routes){
+	$routes->get('', 'Admin::admin');
+	$routes->post('add', 'Admin::add');
+	$routes->post('view', 'Admin::view');
+	$routes->post('edit', 'Admin::edit');
+	$routes->post('delete', 'Admin::delete');
+	$routes->get('get', 'Admin::get');
+	$routes->post('search', 'Admin::find');
+});
 
 //buku
-$routes->get('buku/', 'Buku::Buku');
-$routes->post('buku/add', 'Buku::add');
-$routes->post('buku/view', 'Buku::view');
-$routes->post('buku/edit', 'Buku::edit');
-$routes->post('buku/delete', 'Buku::delete');
-$routes->get('buku/get', 'Buku::get');
-$routes->add('buku/search', 'Buku::find');
+$routes->group('buku', function($routes){
+	$routes->get('', 'Buku::Buku');
+	$routes->post('add', 'Buku::add');
+	$routes->post('view', 'Buku::view');
+	$routes->post('edit', 'Buku::edit');
+	$routes->post('delete', 'Buku::delete');
+	$routes->get('get', 'Buku::get');
+	$routes->post('search', 'Buku::find');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
