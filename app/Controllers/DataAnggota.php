@@ -14,6 +14,22 @@ class DataAnggota extends BaseController
 		echo view('_layout/page/footer');
 	}
 
+	public function dosen()
+	{
+		echo view('_layout/page/header');
+		echo view('_layout/page/sidebar');
+		echo view('admin/v_datadosen');
+		echo view('_layout/page/footer');
+	}
+
+	public function tu()
+	{
+		echo view('_layout/page/header');
+		echo view('_layout/page/sidebar');
+		echo view('admin/v_datatu');
+		echo view('_layout/page/footer');
+	}
+
 	public function add(){
 		$anggota = new AnggotaModel;
 		$data = [
@@ -63,6 +79,32 @@ class DataAnggota extends BaseController
 		$anggota = new AnggotaModel;
 		$keyword = $this->request->getPost('key');
 		$data['anggota'] = $anggota->find_mhs($keyword);
+		return $this->response->setJSON($data);
+	}
+
+	public function get_dosen(){
+		$anggota = new AnggotaModel;
+		$data['anggota'] = $anggota->get_dosen();
+		return $this->response->setJSON($data);
+	}
+
+	public function find_dosen(){
+		$anggota = new AnggotaModel;
+		$keyword = $this->request->getPost('key');
+		$data['anggota'] = $anggota->find_dosen($keyword);
+		return $this->response->setJSON($data);
+	}
+
+	public function get_tu(){
+		$anggota = new AnggotaModel;
+		$data['anggota'] = $anggota->get_tu();
+		return $this->response->setJSON($data);
+	}
+
+	public function find_tu(){
+		$anggota = new AnggotaModel;
+		$keyword = $this->request->getPost('key');
+		$data['anggota'] = $anggota->find_tu($keyword);
 		return $this->response->setJSON($data);
 	}
 }

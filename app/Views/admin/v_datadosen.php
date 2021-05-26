@@ -4,24 +4,24 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Tambah Mahasiwa</h5>
+                <h5 class="modal-title" id="addModalLabel">Tambah Dosen</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>NIM</label> <span id="error_nim" class="text-danger ms-3"></span>
-                    <input type="text" class="form-control nim" placeholder="Masukan NIM">
+                    <label>NIDN/NIDK</label> <span id="error_nidn" class="text-danger ms-3"></span>
+                    <input type="text" class="form-control nidn" placeholder="Masukan NIDN/NIDK">
                     <small class="text-muted">
-                        NIM harus berbentuk angka
+                        NIDN/NIDK harus berbentuk angka
                     </small>
                 </div>
                 <div class="form-group">
                     <label>Nama</label> <span id="error_nama" class="text-danger ms-3"></span>
                     <input type="text" class="form-control nama" placeholder="Masukan Nama">
                     <small class="text-muted">
-                        Nama lengkap sesuai data diri Mahasiswa
+                        Nama lengkap sesuai data diri Dosen
                     </small>
                 </div>
             </div>
@@ -38,7 +38,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editModalLabel">Edit Mahasiwa</h5>
+          <h5 class="modal-title" id="editModalLabel">Edit Dosen</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -46,17 +46,17 @@
         <div class="modal-body">
             <input type="hidden" class="e_id">
             <div class="form-group">
-                <label>NIM</label> <span id="e_error_nim" class="text-danger ms-3"></span>
-                <input type="text" class="form-control e_nim" placeholder="Masukan NIM">
+                <label>NIDN/NIDK</label> <span id="error_nidn" class="text-danger ms-3"></span>
+                <input type="text" class="form-control e_nidn" placeholder="Masukan NIDN/NIDK">
                 <small class="text-muted">
-                  NIM harus berbentuk angka
+                  NIDK/NIDK harus berbentuk angka
                 </small>
             </div>
             <div class="form-group">
-                <label>Nama</label> <span id="e_error_nama" class="text-danger ms-3"></span>
+                <label>Nama</label> <span id="error_nama" class="text-danger ms-3"></span>
                 <input type="text" class="form-control e_nama" placeholder="Masukan Nama">
                 <small class="text-muted">
-                  Nama lengkap sesuai data diri Mahasiswa
+                  Nama lengkap sesuai data diri Dosen
                 </small>
             </div>
         </div>
@@ -75,12 +75,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Mahasiswa</h1>
+            <h1>Data Dosen</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url()?>">Dasboard</a></li>
-              <li class="breadcrumb-item active">Data Mahasiswa</li>
+              <li class="breadcrumb-item active">Data Dosen</li>
             </ol>
           </div>
         </div>
@@ -117,13 +117,13 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr class=>
-                      <th class="col-3">NIM</th>
+                      <th class="col-3">NIDN/NIDK</th>
                       <th class="col-4">Nama</th>
                       <th class="col-2">Status</th>
                       <th class="col-2">Aksi</th>
                     </tr>
                   </thead>
-                  <tbody class="datamhs"></tbody>
+                  <tbody class="datadosen"></tbody>
                 </table>
               </div>
               <!-- /.card-body -->
@@ -156,49 +156,48 @@ $(document).ready(function (){
   loaddata();
 
   $(document).on('click', '.refresh', function(){
-      $('.datamhs').html("");
+      $('.datadosen').html("");
       loaddata();
   })
 
   $('.cari').keyup(function () {
     var key = $('.cari').val();
-    //console.log(key);
         caridata(key);
    });
 
-  $(document).on('click','.edit_btn', function(){
+   $(document).on('click','.edit_btn', function(){
 
     var anggota_id = $(this).closest('td').find('.id_data').val();
     //alert(anggota_id);
 
     $.ajax({
-      method:"POST",
-      url:"/mhs/view",
-      data: {
-        'id' : anggota_id,
-      },
-      success:function (response){
-        //console.log(response.anggota);
-        $.each(response.anggota, function(key, val){
-          $('#editModal').modal('show');
-          $('.e_id').val(val['id']);
-          $('.e_nim').val(val['username']);
-          $('.e_nama').val(val['nama']);
-        });
-      }
+        method:"POST",
+        url:"/dosen/view",
+        data: {
+          'id' : anggota_id,
+        },
+        success:function (response){
+          //console.log(response.anggota);
+          $.each(response.anggota, function(key, val){
+            $('#editModal').modal('show');
+            $('.e_id').val(val['id']);
+            $('.e_nidn').val(val['username']);
+            $('.e_nama').val(val['nama']);
+          });
+        }
+      });
     });
-  });
 
-  $(document).on('click','.ajaxedit-save', function(){
-    if($.trim($('.e_nim').val()).length == 0){
-        error_nim = 'NIM masih Kosong';
-        $('#e_error_nim').text(error_nim);
-      }else if($.trim($('.e_nim').val()).length < 6){
-        error_nim = 'Panjang NIM minimal 6';
-        $('#e_error_nim').text(error_nim);
+   $(document).on('click','.ajaxedit-save', function(){
+    if($.trim($('.e_nidn').val()).length == 0){
+        error_nidn = 'NIDN/NIDK masih Kosong';
+        $('#e_error_ndin').text(error_nidn);
+      }else if($.trim($('.e_nidn').val()).length < 10){
+        error_nidn = 'Panjang NIM minimal 10';
+        $('#e_error_nidn').text(error_nidn);
       }else{
-        error_nim = '';
-        $('#e_error_nim').text(error_nim);
+        error_nidn = '';
+        $('#e_error_nidn').text(error_nidn);
       }
 
       if($.trim($('.e_nama').val()).length == 0){
@@ -209,18 +208,18 @@ $(document).ready(function (){
         $('#e_error_nama').text(error_nama);
       }
 
-      if(error_nim !='' || error_nama != ''){
+      if(error_nidn !='' || error_nama != ''){
         return false;
       }else{
         var data ={
           'id':$('.e_id').val(),
           'nama': $('.e_nama').val(),
-          'username' : $('.e_nim').val(),
+          'username' : $('.e_nidn').val(),
         };
 
         $.ajax({
           method:"POST",
-          url:"/mhs/edit",
+          url:"/dosen/edit",
           data:data,
           success:function (response){
             Swal.fire({
@@ -230,7 +229,7 @@ $(document).ready(function (){
             })
             $('#editModal').modal('hide');
 
-            $('.datamhs').html("");
+            $('.datadosen').html("");
             loaddata();
         }
         });
@@ -240,27 +239,23 @@ $(document).ready(function (){
   $(document).on('click','.delete_btn', function(){
 
   var anggota_id = $(this).closest('td').find('.id_data').val();
-  //alert(anggota_id);
 
   Swal.fire({
     title: 'Apa anda yakin ingin menhapus ini?',
     showDenyButton: true,
-    showCancelButton: true,
     confirmButtonText: `Ya`,
     denyButtonText: `Tidak`,
   }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
       $.ajax({
         method:"POST",
-        url:"/mhs/delete",
+        url:"/dosen/delete",
         data: {
           'id' : anggota_id,
         },
         success:function (response){
-          //console.log(response.anggota);
           Swal.fire('Data berhasil dihapus!!', '', 'success')
-          $('.datamhs').html("");
+          $('.datadosen').html("");
           loaddata();
         }
       });
@@ -275,13 +270,13 @@ function caridata(key){
 
     $.ajax({
         method:"POST",
-        url:"/mhs/search",
+        url:"/dosen/search",
         data: {
             'key' : key,
         },
         success:function (response){
             //console.log(response.anggota);
-            $('.datamhs').html("");
+            $('.datadosen').html("");
 
             $.each(response.anggota, function(key,value){
                 //console.log(value['id_Anggota']);
@@ -291,7 +286,7 @@ function caridata(key){
                 }else{
                 status = '<span class="badge bg-success"><i class="fab fa-creative-commons-by"></i> Aktif</span>';
                 }
-                $('.datamhs').append(
+                $('.datadosen').append(
                 '<tr>\
                     <td class="col-3">'+value['username']+'</td>\
                     <td class="col-4">'+value['nama']+'</td>\
@@ -311,7 +306,7 @@ function caridata(key){
 function loaddata(){
   $.ajax({
     method: "GET",
-    url: "/mhs/get",
+    url: "/dosen/get",
     success:function(response){
       //console.log(response.anggota);
       $.each(response.anggota, function(key,value){
@@ -322,7 +317,7 @@ function loaddata(){
         }else{
           status = '<a class="badge bg-success"><i class="fab fa-creative-commons-by"></i> Aktif</a>';
         }
-        $('.datamhs').append(
+        $('.datadosen').append(
           '<tr>\
             <td class="col-3">'+value['username']+'</td>\
             <td class="col-4">'+value['nama']+'</td>\
@@ -346,7 +341,7 @@ function loaddata(){
 <script>
   $(document).ready(function () {
 
-    $(".nim").keypress(function (e) {
+    $(".nidn").keypress(function (e) {
         //if the letter is not digit then display error and don't type anything
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             //display error message
@@ -355,15 +350,15 @@ function loaddata(){
    });
 
     $(document).on('click','.ajaxadd-save', function () {
-      if($.trim($('.nim').val()).length == 0){
-        error_nim = 'NIM masih Kosong';
-        $('#error_nim').text(error_nim);
-      }else if($.trim($('.nim').val()).length < 6){
-        error_nim = 'Panjang NIM minimal 6';
-        $('#error_nim').text(error_nim);
+      if($.trim($('.nidn').val()).length == 0){
+        error_nidn = 'NIDN/NIDK masih Kosong';
+        $('#error_nidn').text(error_nidn);
+      }else if($.trim($('.nidn').val()).length < 10){
+        error_nidn = 'Panjang NIDN/NIDK minimal 10';
+        $('#error_nidn').text(error_nidn);
       }else{
-        error_nim = '';
-        $('#error_nim').text(error_nim);
+        error_nidn = '';
+        $('#error_nidn').text(error_nidn);
       }
 
       if($.trim($('.nama').val()).length == 0){
@@ -374,22 +369,22 @@ function loaddata(){
         $('#error_nama').text(error_nama);
       }
 
-      if(error_nim !='' || error_nama != ''){
+      if(error_nidn !='' || error_nama != ''){
         return false;
       }else{
         var data ={
           'nama': $('.nama').val(),
-          'username' : $('.nim').val(),
-          'type_anggota' : '2'
+          'username' : $('.nidn').val(),
+          'type_anggota' : '1'
         };
        $.ajax({
          method: "POST",
-         url: "/mhs/add",
+         url: "/dosen/add",
          data: data,
          success:function(response){
           $('#addModal').modal('hide');
           $('#addModal').find('input').val('');
-          $('.datamhs').html("");
+          $('.datadosen').html("");
           loaddata();
 
           Swal.fire({

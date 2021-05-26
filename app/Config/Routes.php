@@ -50,6 +50,27 @@ $routes->post('mhs/view', 'DataAnggota::view');
 $routes->post('mhs/edit', 'DataAnggota::edit');
 $routes->post('mhs/delete', 'DataAnggota::delete');
 $routes->post('mhs/search', 'DataAnggota::find_mhs');
+
+//dosen
+$routes->get('dosen/', 'DataAnggota::dosen');
+$routes->post('dosen/add', 'DataAnggota::add');
+$routes->post('dosen/view', 'DataAnggota::view');
+$routes->post('dosen/edit', 'DataAnggota::edit');
+$routes->post('dosen/delete', 'DataAnggota::delete');
+$routes->get('dosen/get', 'DataAnggota::get_dosen');
+$routes->post('dosen/search', 'DataAnggota::find_dosen');
+
+//TU
+$routes->get('tu/', 'DataAnggota::tu');
+$routes->post('tu/add', 'DataAnggota::add');
+$routes->post('tu/view', 'DataAnggota::view');
+$routes->post('tu/edit', 'DataAnggota::edit');
+$routes->post('tu/delete', 'DataAnggota::delete');
+$routes->get('tu/get', 'DataAnggota::get_tu');
+$routes->post('tu/search', 'DataAnggota::find_tu');
+
+//book
+$routes->get('book/','Book::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
