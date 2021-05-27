@@ -88,10 +88,10 @@ $routes->group('admin', function($routes){
 
 //buku
 $routes->group('buku', function($routes){
-	$routes->get('', 'Buku::Buku');
+	$routes->get('', 'Buku::buku');
 	$routes->post('add', 'Buku::add');
 	$routes->post('view', 'Buku::view');
-	$routes->post('edit', 'Buku::edit');
+	$routes->add('edit', 'Buku::edit');
 	$routes->post('delete', 'Buku::delete');
 	$routes->get('get', 'Buku::get');
 	$routes->post('search', 'Buku::find');
