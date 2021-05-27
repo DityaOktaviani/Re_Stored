@@ -1,5 +1,6 @@
+<?= $this->extend('_layout/admin_temp') ?>
 
-
+<?= $this->section('content') ?>
   <!-- Main Sidebar Container -->
   
 
@@ -57,3 +58,5 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+
+<?= $this->endSection() ?>

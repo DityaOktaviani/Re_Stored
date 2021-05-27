@@ -33,13 +33,6 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'Home::index');
-$routes->post('home/add_mhs', 'Home::add_mhs');
-$routes->get('home/get_mhs', 'Home::get_mhs');
-$routes->post('home/view_mhs', 'Home::view_mhs');
-$routes->post('home/edit_mhs', 'Home::edit_mhs');
-$routes->post('home/delete_mhs', 'Home::delete_mhs');
-
 //untuk data semua ada di bawah ini
 
 //mahasiswa
@@ -77,7 +70,15 @@ $routes->group('tu', function($routes){
 
 //admin
 $routes->group('admin', function($routes){
-	$routes->get('', 'Admin::admin');
+	//page
+	$routes->get('', 'Admin::index');
+	$routes->get('dataadmin', 'Admin::dataadmin');
+	$routes->get('databuku', 'Admin::databuku');
+	$routes->get('datadosen', 'Admin::datadosen');
+	$routes->get('datamhs', 'Admin::datamhs');
+	$routes->get('datatu', 'Admin::datatu');
+
+	//ajax
 	$routes->post('add', 'Admin::add');
 	$routes->post('view', 'Admin::view');
 	$routes->post('edit', 'Admin::edit');

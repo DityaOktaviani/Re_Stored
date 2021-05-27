@@ -1,3 +1,6 @@
+<?= $this->extend('_layout/admin_temp') ?>
+
+<?= $this->section('content') ?>
 <!-- Main Sidebar Container -->
   <!-- Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -65,7 +68,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?php echo base_url()?>">Dasboard</a></li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url('admin')?>">Dasboard</a></li>
               <li class="breadcrumb-item active">Data Admin</li>
             </ol>
           </div>
@@ -357,3 +360,5 @@ function loaddata(){
     });
   });
 </script>
+
+<?= $this->endSection() ?>

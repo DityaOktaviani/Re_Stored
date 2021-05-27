@@ -6,12 +6,34 @@ use App\Models\AdminModel;
 
 class Admin extends BaseController
 {
-	public function admin()
+	public function index()
 	{
-		echo view('_layout/page/header');
-		echo view('_layout/page/sidebar');
+		echo view('admin/v_home');
+	}
+
+	public function dataadmin()
+	{
 		echo view('admin/v_dataadmin');
-		echo view('_layout/page/footer');
+	}
+
+	public function databuku()
+	{
+		echo view('admin/v_databuku');
+	}
+
+	public function datadosen()
+	{
+		echo view('admin/v_datadosen');
+	}
+
+	public function datamhs()
+	{
+		echo view('admin/v_datamhs');
+	}
+
+	public function datatu()
+	{
+		echo view('admin/v_datatu');
 	}
 
 	public function add(){
