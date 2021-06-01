@@ -40,9 +40,14 @@ class Tu extends BaseController
 		}
 	}
 
-    public function mybook() {
-        echo view('hello mybook');
-    }
+    public function peminjaman()
+	{
+		if(Tu::cheking()){
+			echo view('tu/v_peminjaman');
+		} else {
+			return redirect()->to('/login');
+		}
+	}
 
     public function cheking(){
         if (session()->get('login_token')){

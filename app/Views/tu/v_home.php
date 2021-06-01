@@ -375,12 +375,14 @@ function preview(id){
 
 function pinjam(id){
   var username = $('.username').val();
+  var name = $('.name').val();
   $.ajax({
     method:"POST",
     url:"/peminjaman/pinjam",
     data: {
       'id_book' : id,
       'username':username,
+      'name' : name,
     },
     success:function (response){
      console.log(response);

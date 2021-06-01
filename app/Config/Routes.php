@@ -72,7 +72,7 @@ $routes->group('dosen', function($routes){
 	$routes->post('search', 'Anggota::find_dosen');
 });
 
-//TU 90%
+//TU 100%
 $routes->group('tu', function($routes){
 	//page
 	$routes->get('', 'Tu::index');
@@ -81,6 +81,7 @@ $routes->group('tu', function($routes){
 	$routes->get('datadosen', 'Tu::datadosen');
 	$routes->get('datamhs', 'Tu::datamhs');
 	$routes->get('mybook', 'Tu::mybook');
+	$routes->get('peminjaman', 'Tu::peminjaman');
 	$routes->get('logout', 'Tu::logout');
 
 	//ajax
@@ -93,7 +94,7 @@ $routes->group('tu', function($routes){
 	$routes->post('search', 'Anggota::find_tu');
 });
 
-//admin 90%
+//admin 100%
 $routes->group('admin', function($routes){
 	//page
 	$routes->get('', 'Admin::index');
@@ -103,6 +104,7 @@ $routes->group('admin', function($routes){
 	$routes->get('datadosen', 'Admin::datadosen');
 	$routes->get('datamhs', 'Admin::datamhs');
 	$routes->get('datatu', 'Admin::datatu');
+	$routes->get('peminjaman', 'Admin::peminjaman');
 	$routes->get('logout', 'Admin::logout');
 
 	//ajax
@@ -136,6 +138,8 @@ $routes->group('buku', function($routes){
 $routes->group('peminjaman', function($routes){
 	$routes->post('history', 'Peminjaman::history');
 	$routes->post('pinjam', 'Peminjaman::pinjam');
+	$routes->get('log', 'Peminjaman::log');
+	$routes->post('log_search', 'Peminjaman::log_search');
 });
 
 //login

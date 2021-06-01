@@ -112,6 +112,14 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="<?php echo base_url('admin/peminjaman')?>" class="nav-link">
+              <i class="nav-icon fas fa-exchange-alt"></i>
+              <p>
+                Peminjaman
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="<?php echo base_url('admin/logout')?>" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>

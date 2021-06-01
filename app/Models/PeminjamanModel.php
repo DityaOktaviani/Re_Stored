@@ -13,5 +13,20 @@ class PeminjamanModel extends Model{
         'username',
         'timestamp'
     ];
+
+    public function search($key){
+        $db = db_connect();
+        $query = $db->query(
+            "SELECT
+                *
+            FROM
+                peminjam
+            WHERE
+                peminjam.peminjam LIKE '%$key%'
+            ORDER BY
+                peminjam.`timestamp` DESC"
+		);
+        return $query->getResult();
+    }
 }
 ?>

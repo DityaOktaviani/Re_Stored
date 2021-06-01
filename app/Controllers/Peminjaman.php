@@ -49,5 +49,18 @@ class Peminjaman extends BaseController
         return $this->response->setJSON($data);
     }
 
+    public function log(){
+        $pinjam = new PeminjamanModel;
+        $data = $pinjam->findAll();
+        return $this->response->setJSON($data);
+    }
+
+    public function log_search(){
+        $pinjam = new PeminjamanModel;
+        $key = $this->request->getPost('key');
+        $data = $pinjam->search($key);
+        return $this->response->setJSON($data);
+    }
+
 }
 ?>

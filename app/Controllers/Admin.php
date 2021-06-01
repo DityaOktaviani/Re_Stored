@@ -62,6 +62,15 @@ class Admin extends BaseController
 		}
 	}
 
+	public function peminjaman()
+	{
+		if(Admin::cheking()){
+			echo view('admin/v_peminjaman');
+		} else {
+			return redirect()->to('/login/admin');
+		}
+	}
+
 
 	//fungsi pengecekan admin
 	public function cheking(){
