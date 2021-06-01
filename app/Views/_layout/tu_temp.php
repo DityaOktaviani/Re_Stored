@@ -42,6 +42,7 @@
       <span class="brand-text font-weight-light">Re-Stored</span>
       <input type="hidden" class="user_id" id="user_id" name="user_id" value="<?php echo session()->get('id');?>">
       <input type="hidden" class="username" id="username" name="username" value="<?php echo session()->get('username');?>">
+      <input type="hidden" class="name" id="name" name="name" value="<?php echo session()->get('name');?>">
     </a>
 
     <!-- Sidebar -->
@@ -49,11 +50,11 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="/dist/img/tu.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block"><?php echo session()->get('username');?></a>
-          <footer class="blockquote-footer">Admin</footer>
+          <a class="d-block"><?php echo session()->get('name');?></a>
+          <footer class="blockquote-footer">TU (<?php echo session()->get('username');?>)</footer>
         </div>
       </div>
 
@@ -63,7 +64,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url('admin')?>" class="nav-link">
+            <a href="<?php echo base_url('tu')?>" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dasboard
@@ -80,47 +81,27 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/databuku')?>" class="nav-link">
+                <a href="<?php echo base_url('tu/databuku')?>" class="nav-link">
                   <i class="fa fa-book nav-icon"></i>
                   <p>Buku</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/datamhs')?>" class="nav-link">
+                <a href="<?php echo base_url('tu/datamhs')?>" class="nav-link">
                   <i class="fa fa-user-alt nav-icon"></i>
                   <p>Mahasiswa</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/datadosen')?>" class="nav-link">
+                <a href="<?php echo base_url('tu/datadosen')?>" class="nav-link">
                   <i class="fa fa-user-graduate nav-icon"></i>
                   <p>Dosen</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/datatu')?>" class="nav-link">
-                  <i class="fas fa-user-cog nav-icon"></i>
-                  <p>TU</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/dataadmin')?>" class="nav-link">
-                  <i class="fas fa-user-lock nav-icon"></i>
-                  <p>Admin</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('admin/mybook')?>" class="nav-link">
-              <i class="nav-icon fas fa-book-reader"></i>
-              <p>
-                Dasboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo base_url('admin/logout')?>" class="nav-link">
+            <a href="<?php echo base_url('tu/logout')?>" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>
                 Logout

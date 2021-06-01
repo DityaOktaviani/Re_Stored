@@ -6,30 +6,6 @@ use App\Models\AnggotaModel;
 
 class Anggota extends BaseController
 {
-	public function mhs()
-	{
-		echo view('_layout/page/header');
-		echo view('_layout/page/sidebar');
-		echo view('admin/v_datamhs');
-		echo view('_layout/page/footer');
-	}
-
-	public function dosen()
-	{
-		echo view('_layout/page/header');
-		echo view('_layout/page/sidebar');
-		echo view('admin/v_datadosen');
-		echo view('_layout/page/footer');
-	}
-
-	public function tu()
-	{
-		echo view('_layout/page/header');
-		echo view('_layout/page/sidebar');
-		echo view('admin/v_datatu');
-		echo view('_layout/page/footer');
-	}
-
 	public function add(){
 		$anggota = new AnggotaModel;
 		$data = [

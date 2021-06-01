@@ -1,4 +1,4 @@
-<?= $this->extend('_layout/admin_temp') ?>
+<?= $this->extend('_layout/tu_temp') ?>
 
 <?= $this->section('content') ?>    
   <!-- Main Sidebar Container -->

@@ -34,8 +34,9 @@ class Login extends BaseController
             $dummy = [
                 'login_token' => true,
                 'username' => $username,
+                'name' => $userinfo['nama'],
                 'type' => $userinfo['type_anggota'],
-                'id' => $userinfo['type_anggota'],
+                'id' => $userinfo['id_Anggota'],
             ];
             session()->set($dummy);
             $data = ['status' => 'berhasil'];
@@ -55,8 +56,9 @@ class Login extends BaseController
             $dummy = [
                 'login_token' => true,
                 'username' => $username,
+                'name' => $userinfo['nama'],
                 'type' => $userinfo['type_anggota'],
-                'id' => $userinfo['type_anggota'],
+                'id' => $userinfo['id_Anggota'],
             ];
             session()->set($dummy);
             $data = ['status' => 'berhasil'];

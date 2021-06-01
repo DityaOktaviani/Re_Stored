@@ -45,17 +45,20 @@ class Tu extends BaseController
     }
 
     public function cheking(){
-        if (session()->get('login_token'))
-        {
-            $dummy = ['login_token','username','type'];
-            echo 'logged in';
-            session()->remove($dummy);
-        }
-        else
-        {
-            echo 'not logged in';
+        if (session()->get('login_token')){
+			return true;
+        }else{
+            return false;
         }
     }
+
+    //fungsi logout
+	public function logout(){
+		$dummy = ['login_token','username','id'];
+        echo 'logged in';
+        session()->remove($dummy);
+		return redirect()->to('/login');
+	}
 
 }
 

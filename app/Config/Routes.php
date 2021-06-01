@@ -75,7 +75,6 @@ $routes->group('tu', function($routes){
 	$routes->get('logout', 'Tu::logout');
 
 	//ajax
-	$routes->get('', 'Anggota::tu');
 	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
 	$routes->post('view', 'Anggota::view');

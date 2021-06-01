@@ -1,4 +1,4 @@
-<?= $this->extend('_layout/admin_temp') ?>
+<?= $this->extend('_layout/tu_temp') ?>
 
 <?= $this->section('content') ?>
 <!-- Main Sidebar Container -->
@@ -131,7 +131,7 @@
                             <input type="file" class="form-control file" id="file" name="file" placeholder="Upload file">
                             <small> **Hanya menerima dalam bentuk pdf</small>
                           </div>
-                          <input type="hidden" class="form-control pemilik" id="pemilik" name="pemilik" value="">
+                          <input type="hidden" class="form-control pemilik" id="pemilik" name="pemilik">
                           <button type="submit" class="btn btn-block btn-success btn-lg upload" style="display:none;">
                             <i class="far fa-save"></i> Submit
                           </button>
@@ -263,6 +263,8 @@ $(document).ready(function (){
     $('#nav-tambah-tab').tab('show');
     $('.kembali').show();
     $('.upload').show();
+    var user_id = $('.user_id').val();
+    $('.pemilik').val(user_id);
   });
 
   //EDIT
@@ -373,9 +375,9 @@ $(document).ready(function (){
     e.preventDefault();
     if(validation()){
       var fd = new FormData(this);
-      //for (var value of fd.values()) {
-        //  console.log(value);
-        //};
+      for (var value of fd.values()) {
+          console.log(value);
+        };
 
       $.ajax({
          method: "POST",
@@ -386,7 +388,7 @@ $(document).ready(function (){
         contentType: false,
         dataType: "JSON",
          success:function(response){
-          //console.log(response);
+          console.log(response);
           $('#myform').find('input').val('');
           $('#abstrak').val('');
 

@@ -19,19 +19,31 @@ class Buku extends BaseController
 		$file = $this->request->getFile('file');
 		$judul = $this->request->getPost('judul');
 		$penulis = $this->request->getPost('penulis');
+		$pemilik = $this->request->getPost('pemilik');
 		if( $file->isValid() && ! $file->hasMoved() ){
 			$filename = "file".$judul."penulis".$penulis;
 			$file->move('upload/', $filename);
 		};
-		
-		$data = [
-			'judul'=> $this->request->getPost('judul'),
-			'penulis'=> $this->request->getPost('penulis'),
-			'link'=> $filename,
-			'type_buku'=> $this->request->getPost('jenis'),
-			'abstrak'=> $this->request->getPost('abstrak'),
-			'tahun'=> $this->request->getPost('tahun'),
-		];
+		if($pemilik == '' || $pemilik == null){
+			$data = [
+				'judul'=> $this->request->getPost('judul'),
+				'penulis'=> $this->request->getPost('penulis'),
+				'link'=> $filename,
+				'type_buku'=> $this->request->getPost('jenis'),
+				'abstrak'=> $this->request->getPost('abstrak'),
+				'tahun'=> $this->request->getPost('tahun'),
+			];
+		}else {
+			$data = [
+				'judul'=> $this->request->getPost('judul'),
+				'penulis'=> $this->request->getPost('penulis'),
+				'link'=> $filename,
+				'type_buku'=> $this->request->getPost('jenis'),
+				'abstrak'=> $this->request->getPost('abstrak'),
+				'tahun'=> $this->request->getPost('tahun'),
+				'pemilik_buku' => $this->request->getPost('pemilik'),
+			];
+		}
 
 		if($buku->save($data)){
 			$data = ['status' => 'berhasil'];
