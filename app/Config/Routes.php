@@ -53,7 +53,13 @@ $routes->group('mhs', function($routes){
 
 //dosen
 $routes->group('dosen', function($routes){
-	$routes->get('', 'Anggota::dosen');
+	//page
+	$routes->get('', 'Dosen::index');
+	$routes->post('check', 'Anggota::check');
+	$routes->get('mybook', 'Dosen::mybook');
+	$routes->get('logout', 'Dosen::logout');
+
+	//ajax
 	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
 	$routes->post('view', 'Anggota::view');
@@ -63,7 +69,7 @@ $routes->group('dosen', function($routes){
 	$routes->post('search', 'Anggota::find_dosen');
 });
 
-//TU
+//TU 90%
 $routes->group('tu', function($routes){
 	//page
 	$routes->get('', 'Tu::index');
@@ -84,7 +90,7 @@ $routes->group('tu', function($routes){
 	$routes->post('search', 'Anggota::find_tu');
 });
 
-//admin 100%
+//admin 90%
 $routes->group('admin', function($routes){
 	//page
 	$routes->get('', 'Admin::index');
@@ -114,8 +120,10 @@ $routes->group('buku', function($routes){
 	$routes->post('delete', 'Buku::delete');
 	$routes->get('get', 'Buku::get');
 	$routes->get('get_r', 'Buku::get_r');
+	$routes->get('get_owner', 'Buku::get_owner');
 	$routes->post('search', 'Buku::find');
 	$routes->post('search_r', 'Buku::find_r');
+	$routes->post('search_owner', 'Buku::find_owner');
 	$routes->get('newest', 'Buku::new_book');
 	$routes->get('favorite', 'Buku::fav_book');
 	$routes->post('acc', 'Buku::acc');

@@ -118,6 +118,13 @@ class Buku extends BaseController
 		return $this->response->setJSON($data);
 	}
 
+	public function get_owner(){
+		$buku = new BukuModel;
+		$owner = session()->get('id');
+		$data['buku'] = $buku->get_owner($owner);
+		return $this->response->setJSON($data);
+	}
+
 	public function find(){
 		$buku = new BukuModel;
 		$keyword = $this->request->getPost('key');
@@ -129,6 +136,14 @@ class Buku extends BaseController
 		$buku = new BukuModel;
 		$keyword = $this->request->getPost('key');
 		$data['buku'] = $buku->search_r($keyword);
+		return $this->response->setJSON($data);
+	}
+
+	public function find_owner(){
+		$buku = new BukuModel;
+		$keyword = $this->request->getPost('key');
+		$owner = session()->get('id');
+		$data['buku'] = $buku->search_owner($owner,$keyword);
 		return $this->response->setJSON($data);
 	}
 
