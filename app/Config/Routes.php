@@ -39,8 +39,11 @@ $routes->setAutoRoute(false);
 $routes->group('mhs', function($routes){
 	//page
 	$routes->get('', 'Mhs::index');
+	$routes->post('check', 'Anggota::check');
 	$routes->get('mybook', 'Mhs::mybook');
+	$routes->get('logout', 'Mhs::logout');
 
+	//ajax
 	$routes->get('', 'Anggota::mhs');
 	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
@@ -51,7 +54,7 @@ $routes->group('mhs', function($routes){
 	$routes->post('search', 'Anggota::find_mhs');
 });
 
-//dosen
+//dosen 100%
 $routes->group('dosen', function($routes){
 	//page
 	$routes->get('', 'Dosen::index');

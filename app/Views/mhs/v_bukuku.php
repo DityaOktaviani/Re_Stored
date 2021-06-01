@@ -1,4 +1,4 @@
-<?= $this->extend('_layout/dosen_temp') ?>
+<?= $this->extend('_layout/mhs_temp') ?>
 
 <?= $this->section('content') ?>
 <!-- Main Sidebar Container -->
@@ -102,7 +102,7 @@
                         <div class="col-4">
                           <div class="form-group">
                             <label>Penulis</label> <span id="error_penulis" class="text-danger ms-3"></span>
-                            <input type="text" class="form-control penulis" id="penulis" name="penulis" placeholder="Masukan nama Penulis">
+                            <input type="text" class="form-control penulis" id="penulis" name="penulis" placeholder="Masukan nama Penulis" readonly>
                             <small class="text-muted">
                               *Nama penulis tidak boleh kosong
                             </small>
@@ -112,11 +112,6 @@
                             <select class="form-control jenis" id="jenis" name="jenis">
                               <option></option>
                               <option value="1">Skripsi</option>
-                              <option value="2">Jurnal</option>
-                              <option value="3">Penelitian</option>
-                              <option value="4">Artikel</option>
-                              <option value="5">Tesis</option>
-                              <option value="6">Disertasi<option>
                             </select>
                             <small class="text-muted">
                               *Tipe tidak boleh kosong
@@ -160,7 +155,7 @@
                         <div class="col-4">
                           <div class="form-group">
                             <label>Penulis</label> <span id="e_error_penulis" class="text-danger ms-3"></span>
-                            <input type="text" class="form-control e_penulis" id="epenulis" name="epenulis" placeholder="Masukan nama Penulis">
+                            <input type="text" class="form-control e_penulis" id="epenulis" name="epenulis" placeholder="Masukan nama Penulis" readonly>
                             <small class="text-muted">
                               *Nama penulis tidak boleh kosong
                             </small>
@@ -264,7 +259,9 @@ $(document).ready(function (){
     $('.kembali').show();
     $('.upload').show();
     var user_id = $('.user_id').val();
+    var name = $('.name').val();
     $('.pemilik').val(user_id);
+    $('.penulis').val(name);
   });
 
   //EDIT

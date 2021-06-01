@@ -5,26 +5,39 @@ namespace App\Controllers;
 class Mhs extends BaseController
 {
 
-    public function index() {
-        Mhs::cheking();
-    }
+    public function index()
+	{
+		if(Mhs::cheking()){
+			echo view('mhs/v_home');
+		} else {
+			return redirect()->to('/login');
+		}
+	}
 
-    public function mybook() {
-        echo view('hello mybook');
-    }
+	public function mybook()
+	{
+		if(Mhs::cheking()){
+			echo view('mhs/v_bukuku');
+		} else {
+			return redirect()->to('/login');
+		}
+	}
 
     public function cheking(){
-        if (session()->get('login_token'))
-        {
-            $dummy = ['login_token','username','type'];
-            echo 'logged in';
-            session()->remove($dummy);
-        }
-        else
-        {
-            echo 'not logged in';
+        if (session()->get('login_token')){
+			return true;
+        }else{
+            return false;
         }
     }
+
+    //fungsi logout
+	public function logout(){
+		$dummy = ['login_token','username','id'];
+        echo 'logged in';
+        session()->remove($dummy);
+		return redirect()->to('/login');
+	}
 
 }
 
