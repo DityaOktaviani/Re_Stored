@@ -66,6 +66,15 @@ class Login extends BaseController
         return $this->response->setJSON($data);  
     }
 
+    public function branch(){
+        if(session()->get('type') == 1){
+            return redirect()->to('/dosen');
+        } else if(session()->get('type') == 2){
+            return redirect()->to('/mhs');
+        } else if(session()->get('type') == 3){
+            return redirect()->to('/tu');
+        }
+    }
 
     //admin
     public function admin() {

@@ -107,4 +107,16 @@ class Anggota extends BaseController
 		$data['anggota'] = $anggota->find_tu($keyword);
 		return $this->response->setJSON($data);
 	}
+
+	public function check(){
+        $user = new AnggotaModel;
+        $username = $this->request->getPost('username');
+        $userinfo = $user->where('username', $username)->first();
+		if($username == $userinfo['username']){
+			$data = ['status' => '1'];
+		} else {
+			$data = ['status' => '0'];
+		}
+        return $this->response->setJSON($data);
+    }
 }

@@ -42,6 +42,7 @@ $routes->group('mhs', function($routes){
 	$routes->get('mybook', 'Mhs::mybook');
 
 	$routes->get('', 'Anggota::mhs');
+	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
 	$routes->get('get', 'Anggota::get_mhs');
 	$routes->post('view', 'Anggota::view');
@@ -53,6 +54,7 @@ $routes->group('mhs', function($routes){
 //dosen
 $routes->group('dosen', function($routes){
 	$routes->get('', 'Anggota::dosen');
+	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
 	$routes->post('view', 'Anggota::view');
 	$routes->post('edit', 'Anggota::edit');
@@ -63,7 +65,18 @@ $routes->group('dosen', function($routes){
 
 //TU
 $routes->group('tu', function($routes){
+	//page
+	$routes->get('', 'Tu::index');
+	$routes->post('check', 'Anggota::check');
+	$routes->get('databuku', 'Tu::databuku');
+	$routes->get('datadosen', 'Tu::datadosen');
+	$routes->get('datamhs', 'Tu::datamhs');
+	$routes->get('mybook', 'Tu::mybook');
+	$routes->get('logout', 'Tu::logout');
+
+	//ajax
 	$routes->get('', 'Anggota::tu');
+	$routes->post('check', 'Anggota::check');
 	$routes->post('add', 'Anggota::add');
 	$routes->post('view', 'Anggota::view');
 	$routes->post('edit', 'Anggota::edit');
@@ -72,16 +85,16 @@ $routes->group('tu', function($routes){
 	$routes->post('search', 'Anggota::find_tu');
 });
 
-//admin
+//admin 100%
 $routes->group('admin', function($routes){
 	//page
 	$routes->get('', 'Admin::index');
+	$routes->post('check', 'Anggota::check');
 	$routes->get('dataadmin', 'Admin::dataadmin');
 	$routes->get('databuku', 'Admin::databuku');
 	$routes->get('datadosen', 'Admin::datadosen');
 	$routes->get('datamhs', 'Admin::datamhs');
 	$routes->get('datatu', 'Admin::datatu');
-	$routes->get('mybook', 'Admin::mybook');
 	$routes->get('logout', 'Admin::logout');
 
 	//ajax
@@ -106,6 +119,7 @@ $routes->group('buku', function($routes){
 	$routes->post('search_r', 'Buku::find_r');
 	$routes->get('newest', 'Buku::new_book');
 	$routes->get('favorite', 'Buku::fav_book');
+	$routes->post('acc', 'Buku::acc');
 });
 
 //peminjaman
@@ -117,6 +131,7 @@ $routes->group('peminjaman', function($routes){
 //login
 $routes->group('login', function($routes){
 	$routes->get('', 'Login::index');
+	$routes->get('branch', 'Login::branch');
 	$routes->post('check', 'Login::check');
 	$routes->post('activing', 'Login::activing');
 	$routes->post('masuk', 'Login::masuk');

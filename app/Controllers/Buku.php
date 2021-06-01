@@ -131,4 +131,17 @@ class Buku extends BaseController
 		$data = $buku->where('dikonfirmasi','2')->orderBy('view', 'desc')->findAll(5,0);
         return $this->response->setJSON($data);
 	}
+
+	public function acc(){
+		$buku = new BukuModel;
+		$id = $this->request->getPost('id');
+		$data = $buku->where('id_buku',$id)->first();
+		$update = ['dikonfirmasi' => '2'];
+		if($buku->update($id,$update)){
+			$data = ['status' => 'success'];
+		} else {
+			$data = ['status' => 'gagal'];
+		}
+        return $this->response->setJSON($data);
+	}
 }

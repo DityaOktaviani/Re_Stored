@@ -159,7 +159,7 @@ $(document).ready(function () {
         success:function (response){
           console.log(response.status);
           if(response.status == 'berhasil'){
-            window.location.href = "<?php echo base_url('mhs');?>";
+            window.location.href = "<?php echo base_url('login/branch');?>";
           }else{
             return false;
           }
