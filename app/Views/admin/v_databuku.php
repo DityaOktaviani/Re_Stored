@@ -638,6 +638,7 @@ function e_validation(){
 
 //fungsi preview pdf
 function preview(id){
+    var base_url = "<?php echo base_url();?>";
     $.ajax({
         method:"POST",
         url:"/buku/view",
@@ -647,7 +648,7 @@ function preview(id){
         success:function (response){
           console.log(response.buku);
           $.each(response.buku, function(key, val){
-            $('.iframe').append('<iframe src="upload/'+val['link']+'" width="100%" height="1080px"></iframe>')
+            $('.iframe').append('<iframe src="'+base_url+'/upload/'+val['link']+'#toolbar=0&navpanes=0&scrollbar=0" controlsList="nodownload" width="100%" height="1080px"></iframe>')
           });
         }
       });

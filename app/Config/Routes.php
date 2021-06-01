@@ -37,6 +37,10 @@ $routes->setAutoRoute(false);
 
 //mahasiswa
 $routes->group('mhs', function($routes){
+	//page
+	$routes->get('', 'Mhs::index');
+	$routes->get('mybook', 'Mhs::mybook');
+
 	$routes->get('', 'Anggota::mhs');
 	$routes->post('add', 'Anggota::add');
 	$routes->get('get', 'Anggota::get_mhs');
@@ -97,6 +101,21 @@ $routes->group('buku', function($routes){
 	$routes->get('get', 'Buku::get');
 	$routes->post('search', 'Buku::find');
 });
+
+$routes->group('login', function($routes){
+	$routes->get('', 'Login::index');
+	$routes->post('check', 'Login::check');
+	$routes->post('activing', 'Login::activing');
+	$routes->post('masuk', 'Login::masuk');
+	$routes->group('admin', function($routes){
+		$routes->get('', 'Login::admin');
+		$routes->post('check', 'Login::admin_check');
+		$routes->post('activing', 'Login::admin_activing');
+		$routes->post('masuk', 'Login::admin_masuk');
+		
+	});
+});
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

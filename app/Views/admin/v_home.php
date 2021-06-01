@@ -710,7 +710,7 @@ function preview(id){
         success:function (response){
           console.log(response.buku);
           $.each(response.buku, function(key, val){
-            $('.iframe').append('<iframe src="upload/'+val['link']+'" width="100%" height="1080px"></iframe>')
+            $('.iframe').append('<iframe src="http://localhost:8080/upload/'+val['link']+'" width="100%" height="1080px"></iframe>')
           });
         }
       });
