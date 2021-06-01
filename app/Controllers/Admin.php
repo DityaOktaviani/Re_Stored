@@ -6,36 +6,81 @@ use App\Models\AdminModel;
 
 class Admin extends BaseController
 {
+
+	//halaman yang bisa di akses admin
 	public function index()
 	{
-		echo view('admin/v_home');
+		if(Admin::cheking()){
+			echo view('admin/v_home');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
 	public function dataadmin()
 	{
-		echo view('admin/v_dataadmin');
+		if(Admin::cheking()){
+			echo view('admin/v_dataadmin');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
 	public function databuku()
 	{
-		echo view('admin/v_databuku');
+		if(Admin::cheking()){
+			echo view('admin/v_databuku');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
 	public function datadosen()
 	{
-		echo view('admin/v_datadosen');
+		if(Admin::cheking()){
+			echo view('admin/v_datadosen');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
 	public function datamhs()
 	{
-		echo view('admin/v_datamhs');
+		if(Admin::cheking()){
+			echo view('admin/v_datamhs');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
 	public function datatu()
 	{
-		echo view('admin/v_datatu');
+		if(Admin::cheking()){
+			echo view('admin/v_datatu');
+		} else {
+			return redirect()->to('/login/admin');
+		}
 	}
 
+
+	//fungsi pengecekan admin
+	public function cheking(){
+        if (session()->get('login_token')){
+			return true;
+        }else{
+            return false;
+        }
+    }
+
+	//fungsi logout
+	public function logout(){
+		$dummy = ['login_token','username','id'];
+        echo 'logged in';
+        session()->remove($dummy);
+		return redirect()->to('/login/admin');
+	}
+
+	// fungsi tabel admin
 	public function add(){
 		$admin = new AdminModel;
 		$data = ['username' => $this->request->getPost('username'),];

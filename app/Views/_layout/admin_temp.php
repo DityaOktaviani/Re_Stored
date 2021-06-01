@@ -34,12 +34,14 @@
   <!-- /.navbar -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png"
-           alt="AdminLTE Logo"
+    <a href="#" class="brand-link">
+      <img src="/dist/img/logo.jpg"
+           alt="Re-stored Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Re-Stored</span>
+      <input type="hidden" class="user_id" id="user_id" name="user_id" value="<?php echo session()->get('id');?>">
+      <input type="hidden" class="username" id="username" name="username" value="<?php echo session()->get('username');?>">
     </a>
 
     <!-- Sidebar -->
@@ -47,10 +49,10 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+          <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a class="d-block"><?php echo "nama orang"?></a>
+          <a class="d-block"><?php echo session()->get('username');?></a>
           <footer class="blockquote-footer">Admin</footer>
         </div>
       </div>
@@ -108,6 +110,22 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('admin/mybook')?>" class="nav-link">
+              <i class="nav-icon fas fa-book-reader"></i>
+              <p>
+                Dasboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('admin/logout')?>" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

@@ -100,10 +100,35 @@ class Buku extends BaseController
 		return $this->response->setJSON($data);
 	}
 
+	public function get_r(){
+		$buku = new BukuModel;
+		$data['buku'] = $buku->get_r();
+		return $this->response->setJSON($data);
+	}
+
 	public function find(){
 		$buku = new BukuModel;
 		$keyword = $this->request->getPost('key');
 		$data['buku'] = $buku->search($keyword);
 		return $this->response->setJSON($data);
+	}
+
+	public function find_r(){
+		$buku = new BukuModel;
+		$keyword = $this->request->getPost('key');
+		$data['buku'] = $buku->search_r($keyword);
+		return $this->response->setJSON($data);
+	}
+
+	public function new_book(){
+		$buku = new BukuModel;
+		$data = $buku->where('dikonfirmasi','2')->orderBy('timestamp', 'desc')->findAll(5,0);
+        return $this->response->setJSON($data);
+	}
+
+	public function fav_book(){
+		$buku = new BukuModel;
+		$data = $buku->where('dikonfirmasi','2')->orderBy('view', 'desc')->findAll(5,0);
+        return $this->response->setJSON($data);
 	}
 }

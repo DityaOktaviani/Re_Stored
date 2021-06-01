@@ -81,6 +81,8 @@ $routes->group('admin', function($routes){
 	$routes->get('datadosen', 'Admin::datadosen');
 	$routes->get('datamhs', 'Admin::datamhs');
 	$routes->get('datatu', 'Admin::datatu');
+	$routes->get('mybook', 'Admin::mybook');
+	$routes->get('logout', 'Admin::logout');
 
 	//ajax
 	$routes->post('add', 'Admin::add');
@@ -96,17 +98,29 @@ $routes->group('buku', function($routes){
 	$routes->get('', 'Buku::buku');
 	$routes->post('add', 'Buku::add');
 	$routes->post('view', 'Buku::view');
-	$routes->add('edit', 'Buku::edit');
+	$routes->post('edit', 'Buku::edit');
 	$routes->post('delete', 'Buku::delete');
 	$routes->get('get', 'Buku::get');
+	$routes->get('get_r', 'Buku::get_r');
 	$routes->post('search', 'Buku::find');
+	$routes->post('search_r', 'Buku::find_r');
+	$routes->get('newest', 'Buku::new_book');
+	$routes->get('favorite', 'Buku::fav_book');
 });
 
+//peminjaman
+$routes->group('peminjaman', function($routes){
+	$routes->post('history', 'Peminjaman::history');
+	$routes->post('pinjam', 'Peminjaman::pinjam');
+});
+
+//login
 $routes->group('login', function($routes){
 	$routes->get('', 'Login::index');
 	$routes->post('check', 'Login::check');
 	$routes->post('activing', 'Login::activing');
 	$routes->post('masuk', 'Login::masuk');
+	//login admin
 	$routes->group('admin', function($routes){
 		$routes->get('', 'Login::admin');
 		$routes->post('check', 'Login::admin_check');
