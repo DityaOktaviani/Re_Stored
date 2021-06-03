@@ -102,7 +102,7 @@ class Admin extends BaseController
 	public function view(){
 		$admin = new AdminModel;
 		$id = $this->request->getPost('id');
-		$data['admin'] = $admin->view($id);
+		$data = $admin->find($id);
 		return $this->response->setJSON($data);
 	}
 

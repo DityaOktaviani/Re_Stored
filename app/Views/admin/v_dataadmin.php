@@ -15,7 +15,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Username</label> <span id="error_username" class="text-danger ms-3"></span>
-                    <input type="text" class="form-control username" placeholder="Masukan Username">
+                    <input type="text" class="form-control a_username" placeholder="Masukan Username">
                     <small class="text-muted">
                         Username minimal terdiri dari 3 huruf ataupun angka
                     </small>
@@ -157,7 +157,7 @@ $(document).ready(function (){
    $(document).on('click','.edit_btn', function(){
 
     var admin_id = $(this).closest('td').find('.id_data').val();
-    console.log(admin_id);
+    //console.log(admin_id);
 
     $.ajax({
         method:"POST",
@@ -166,13 +166,10 @@ $(document).ready(function (){
           'id' : admin_id,
         },
         success:function (response){
-          //console.log(response.admin);
-          $.each(response.admin, function(key, val){
-
-            $('#editModal').modal('show');
-            $('.e_id').val(val['id']);
-            $('.e_username').val(val['username']);
-          });
+          //console.log(response.id);
+          $('#editModal').modal('show');
+          $('.e_id').val(response.id);
+          $('.e_username').val(response.username);
         }
       });
     });
@@ -322,10 +319,13 @@ function loaddata(){
   $(document).ready(function () {
 
     $(document).on('click','.ajaxadd-save', function () {
-      if($.trim($('.username').val()).length == 0){
+      var username = $('.a_username').val();
+      console.log(username);
+      //return false;
+      if($.trim($('.a_username').val()).length == 0){
         error_username = 'Username masih Kosong';
         $('#error_username').text(error_username);
-      }else if($.trim($('.username').val()).length < 3){
+      }else if($.trim($('.a_username').val()).length < 3){
         error_username = 'Panjang Username minimal 3';
         $('#error_username').text(error_username);
       }else{
@@ -337,7 +337,7 @@ function loaddata(){
         return false;
       }else{
         var data ={
-          'username' : $('.username').val(),
+          'username' : $('.a_username').val(),
         };
        $.ajax({
          method: "POST",
